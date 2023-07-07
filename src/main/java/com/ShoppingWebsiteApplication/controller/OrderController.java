@@ -5,6 +5,7 @@ import com.ShoppingWebsiteApplication.model.Item;
 import com.ShoppingWebsiteApplication.model.Order;
 //import com.ShoppingWebsiteApplication.model.UserOrderRequest;
 //import com.ShoppingWebsiteApplication.model.UserOrderResponse;
+import com.ShoppingWebsiteApplication.model.OrderItems;
 import com.ShoppingWebsiteApplication.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,15 @@ public Long createOrder(@RequestBody Order order)  {
         return orderService.getAllOrders();
     }
 
+    @PostMapping(value = "/create/orderItems")
+    @CrossOrigin
+    public void createOrderItems(@RequestBody OrderItems orderItems)  {
+    }
+    @CrossOrigin
+    @GetMapping(value = "/getAll/orderItems")
+    public OrderItems getAllOrderItems(Order order){
+        return orderService.getOrderItems(order);
+    }
 
 }
 

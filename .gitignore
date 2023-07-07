@@ -1,0 +1,7 @@
+.gradle
+build
+.idea
+gradle/wrapper/
+gradle/
+gradle/daemon/7.5/
+gradle/daemon/7.5.1/

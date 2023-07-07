@@ -1,6 +1,7 @@
 package com.ShoppingWebsiteApplication.service;
 
 import com.ShoppingWebsiteApplication.model.*;
+import com.ShoppingWebsiteApplication.repository.OrderItemsRepository;
 import com.ShoppingWebsiteApplication.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,8 @@ public class OrderServiceImpl implements OrderService {
     OrderRepository orderRepository;
 
     @Autowired
-    UserService userService;
+    OrderItemsRepository orderItemsRepository;
+
 
 //    @Override
 //    public UserOrderResponse createOrder(UserOrderRequest userOrderRequest) throws Exception {
@@ -59,4 +61,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Order> getAllOrders() {
         return orderRepository.getAllOrders();
     }
+    @Override
+    public OrderItems getOrderItems(Order order) {
+        return new OrderItems(order, orderItemsRepository.getAllOrderItems(order.getId()));
+    }
+
 }

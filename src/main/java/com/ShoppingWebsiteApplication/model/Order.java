@@ -5,8 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class Order {
@@ -17,7 +19,7 @@ public class Order {
 
     private LocalDate orderDate;
 
-    private String  shippingAddress;
+    private String shippingAddress;
 
     private Double totalPrice;
 
@@ -25,53 +27,33 @@ public class Order {
 
 //    private Array itemId ;
 
-
-    private Item[]  items ;
-
-//     private Long itemId;
-
-//     private List<Item> getItemIds(Array itemArray) throws SQLException{
-//         if (itemArray != null){
-//             ResultSet itemResultSet =  itemArray.getResultSet();
-//             List<Item> itemIds = new ArrayList<>();
-//             while (itemResultSet.next()){
-//                 itemIds.add(itemResultSet.getLong(1));
-//             }
-//             Item[] items = new Item[itemIds.size()];
-//             for (int i=0; i< itemIds.size(); i++)
-//                 items[i] =itemIds.get(i);
-//             return items
-//         }
-//         return new Item[0];
-//     }
+    private Long[] itemsId;
 
 
-//    private List <Item>;
+    /*
+     * itemsId_java = [123681236,9754983709234,8748593023]
+     * itemsId_sql ="123681236,9754983709234,8748593023"
+     *
+     *
+     * */
 
+    public Long[] getItemsId() {
+        return itemsId;
+    }
 
-    public Order(Long id , Long userId , LocalDate orderDate , String  shippingAddress , Double totalPrice, OrderStatus status,  Item[]  items) {
+    public void setItemsId(Long[] itemsId) {
+        this.itemsId = itemsId;
+    }
+
+    public Order(Long id, Long userId, LocalDate orderDate, String shippingAddress, Double totalPrice, OrderStatus status, Long[] itemsId) {
         this.id = id;
         this.userId = userId;
         this.orderDate = orderDate;
         this.shippingAddress = shippingAddress;
         this.totalPrice = totalPrice;
         this.status = status;
-        this.items = items;
+        this.itemsId = itemsId;
     }
-
-//    public Order(Long id , Long userId , LocalDate orderDate , String  shippingAddress , Double totalPrice, OrderStatus status,  Long  itemId) {
-//        this.id = id;
-//        this.userId = userId;
-//        this.orderDate = orderDate;
-//        this.shippingAddress = shippingAddress;
-//        this.totalPrice = totalPrice;
-//        this.status = status;
-//        this.itemId = itemId;
-//    }
-//    public Order(){
-//
-//    }
-
 
     public Long getId() {
         return id;
@@ -98,10 +80,10 @@ public class Order {
         return status;
     }
 
-    public Item[]  getItems() {
-//        System.out.print(items);
-        return items;
-    }
+//    public Item[]  getItems() {
+////        System.out.print(items);
+//        return items;
+//    }
 
 //    public Long getItemId() {
 //        return itemId;
@@ -131,9 +113,9 @@ public class Order {
         this.status = status;
     }
 
-    public void setItemId( Item[]  items) {
-        this.items = items;
-    }
+//    public void setItemId( Item[]  items) {
+//        this.items = items;
+//    }
 
 //    public void setItemId(Long itemId) {
 //        this.itemId = itemId;
@@ -147,6 +129,10 @@ public class Order {
 //        );
 //    }
 
-
+    public static String arrayToString(Long[] array) {
+        return Arrays.stream(array)
+                .map(String::valueOf)
+                .collect(Collectors.joining(","));
+    }
 
 }

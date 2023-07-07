@@ -37,7 +37,7 @@ public class ItemServiceImpl implements ItemService {
 //    }
 
     @Override
-    public void updateItem(Item item , Long itemId) {itemRepository.updateItem( item , itemId);}
+    public void updateItem(Item item, Long itemId) {itemRepository.updateItem(item , itemId);}
 
     @Override
     public List<Item> getAllItems() {

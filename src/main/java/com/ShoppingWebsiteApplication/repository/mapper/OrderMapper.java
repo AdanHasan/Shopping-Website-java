@@ -23,8 +23,10 @@ public class OrderMapper implements RowMapper<Order> {
                 rs.getString("shipping_address"),
                 rs.getDouble("total_price"),
                 OrderStatus.valueOf(rs.getString("status")),
+                new Long[]{rs.getLong("items_id")}
+
                //getItemIds(rs.getArray("items"))
-                (Item[]) rs.getArray("items").getArray()
+//                (Item[]) rs.getArray("items").getArray()
 
 
 //                rs.getLong("item_id")

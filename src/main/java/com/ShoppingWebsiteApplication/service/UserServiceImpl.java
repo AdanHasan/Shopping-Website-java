@@ -51,7 +51,7 @@ public  class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(CustomUser customUser, Long userId) {userRepository.updateUser(customUser, userId);}
+    public void updateUser(CustomUser customUser, String userName) {userRepository.updateUser(customUser, userName);}
 
     @Override
     public List<CustomUser> getAllUsers() {

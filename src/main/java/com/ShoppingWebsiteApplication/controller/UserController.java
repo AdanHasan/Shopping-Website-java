@@ -54,10 +54,10 @@ public class UserController {
 
 
     @CrossOrigin
-    @PutMapping(value = "/update/{userId}")
-    private void updateUser(@PathVariable Long userId,@RequestBody CustomUser customUser)
+    @PutMapping(value = "/update/{userName}")
+    private void updateUser(@PathVariable String userName,@RequestBody CustomUser customUser)
     {
-        userService.updateUser(customUser, userId);
+        userService.updateUser(customUser, userName);
     }
 
     @CrossOrigin

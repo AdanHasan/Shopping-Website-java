@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import static com.ShoppingWebsiteApplication.model.Order.arrayToString;
+
 
 @Repository
 public class OrderRepositoryImpl  implements OrderRepository {
@@ -45,13 +47,20 @@ public class OrderRepositoryImpl  implements OrderRepository {
 //    }
 
 
-        @Override
+//        @Override
+//    public Long createOrder(Order order) {
+//        String sql = "INSERT INTO " + ORDERS_TABLE_NAME + " (user_id , order_date,  shipping_address , total_price , status  , items) VALUES ( ?, ?, ? , ? , ? , ?)";
+//        jdbcTemplate.update(sql, order.getUserId() ,order.getOrderDate(), "No Address", order.getTotalPrice() , "TEMP", order.getItems());
+//        return jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Long.class);
+//    }
+
+    @Override
     public Long createOrder(Order order) {
-        String sql = "INSERT INTO " + ORDERS_TABLE_NAME + " (user_id , order_date,  shipping_address , total_price , status  , items) VALUES ( ?, ?, ? , ? , ? , ?)";
-        jdbcTemplate.update(sql, order.getUserId() ,order.getOrderDate(), "No Address", order.getTotalPrice() , "TEMP", order.getItems());
+        String itemsIdAsString = arrayToString(order.getItemsId());
+        String sql = "INSERT INTO " + ORDERS_TABLE_NAME + " (user_id , order_date,  shipping_address , total_price , status, items_id ) VALUES ( ?, ?, ? , ? , ?,?)";
+        jdbcTemplate.update(sql, order.getUserId() ,order.getOrderDate(), "No Address", order.getTotalPrice() , "TEMP", itemsIdAsString);
         return jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Long.class);
     }
-
 //@Override
 //public Long createOrder(Order order) {
 //    String sql = "INSERT INTO " + ORDERS_TABLE_NAME + " (user_id , order_date,  shipping_address , total_price , status  , item_id ) VALUES ( ?, ?, ? , ? , ? , ?)";
@@ -84,12 +93,20 @@ public class OrderRepositoryImpl  implements OrderRepository {
 //    }
 
 
+//
+//    @Override
+//    public void updateOrder( Long orderId , Order order) {
+//        String sql = "UPDATE " + ORDERS_TABLE_NAME + " SET user_id=?, order_date=?,  shipping_address=? , total_price=? , status=? , items=?  " +
+//                " WHERE id=?";
+//        jdbcTemplate.update(sql,order.getUserId() , order.getOrderDate() , order.getShippingAddress(), order.getTotalPrice(), order.getStatus().name() , order.getItems(), orderId);
+//    }
 
     @Override
     public void updateOrder( Long orderId , Order order) {
-        String sql = "UPDATE " + ORDERS_TABLE_NAME + " SET user_id=?, order_date=?,  shipping_address=? , total_price=? , status=? , items=?  " +
+        String itemsIdAsString = arrayToString(order.getItemsId());
+        String sql = "UPDATE " + ORDERS_TABLE_NAME + " SET user_id=?, order_date=?,  shipping_address=? , total_price=? , status=?, items_id=?   " +
                 " WHERE id=?";
-        jdbcTemplate.update(sql,order.getUserId() , order.getOrderDate() , order.getShippingAddress(), order.getTotalPrice(), order.getStatus().name() , order.getItems(), orderId);
+        jdbcTemplate.update(sql,order.getUserId() , order.getOrderDate() , order.getShippingAddress(), order.getTotalPrice(), order.getStatus().name() , itemsIdAsString,  orderId);
     }
 //@Override
 //public void updateOrder( Long orderId , Order order) {

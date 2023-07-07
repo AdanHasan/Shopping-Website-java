@@ -12,7 +12,7 @@ void createUser(CustomUser customUser);
 
     void deleteUserById(Long userId);
 
-    void updateUser(CustomUser customUser, Long userId);
+    void updateUser(CustomUser customUser, String userName);
 
     List<CustomUser> getAllUsers();
 

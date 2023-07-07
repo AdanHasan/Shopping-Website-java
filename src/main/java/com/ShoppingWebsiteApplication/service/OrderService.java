@@ -2,6 +2,7 @@ package com.ShoppingWebsiteApplication.service;
 
 import com.ShoppingWebsiteApplication.model.Item;
 import com.ShoppingWebsiteApplication.model.Order;
+import com.ShoppingWebsiteApplication.model.OrderItems;
 //import com.ShoppingWebsiteApplication.model.UserOrderRequest;
 //import com.ShoppingWebsiteApplication.model.UserOrderResponse;
 
@@ -20,5 +21,8 @@ public interface OrderService {
     void updateOrder(Long orderId ,  Order order);
 
     List<Order> getAllOrders();
+    OrderItems getOrderItems(Order order);
+
+
 
 }

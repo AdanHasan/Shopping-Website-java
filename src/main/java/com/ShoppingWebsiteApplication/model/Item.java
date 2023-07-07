@@ -4,13 +4,11 @@ public class Item {
 
     private Long id;
     private String title;
-
     private Double price;
     private Long inStock;
     private Long quantity;
     private String pictureUrl;
     private Boolean liked ;
-
     private Boolean cart ;
 
     public Item(Long id , String title ,Double price , Long inStock, Long quantity,String pictureUrl , Boolean liked , Boolean cart) {
