@@ -16,6 +16,10 @@ public interface OrderService {
 
     Order getOrderById( Long orderId);
 
+    Order getOrderBy(Long orderId);
+    String getOrder(Long orderId);
+
+
     void deleteOrderById( Long orderId);
 
     void updateOrder(Long orderId ,  Order order);

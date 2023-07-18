@@ -27,14 +27,10 @@ public class OrderMapper implements RowMapper<Order> {
 
                //getItemIds(rs.getArray("items"))
 //                (Item[]) rs.getArray("items").getArray()
-
-
 //                rs.getLong("item_id")
 //                (Item[]) rs.getArray("items").getArray()
 //                rs.getArray("item_id")
 //             new Long[]{rs.getLong("item_id")}
-
-
         );
 
 

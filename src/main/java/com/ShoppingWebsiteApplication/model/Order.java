@@ -28,7 +28,7 @@ public class Order {
 //    private Array itemId ;
 
     private Long[] itemsId;
-
+    private String itemsIdAsString;
 
     /*
      * itemsId_java = [123681236,9754983709234,8748593023]
@@ -53,8 +53,13 @@ public class Order {
         this.totalPrice = totalPrice;
         this.status = status;
         this.itemsId = itemsId;
+        itemsIdAsString = arrayToString(itemsId);
     }
 
+
+    public String getItemsIdAsString(){
+        return itemsIdAsString;
+    }
     public Long getId() {
         return id;
     }
