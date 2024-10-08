@@ -3,7 +3,6 @@ package com.ShoppingWebsiteApplication.controller;
 
 import com.ShoppingWebsiteApplication.model.CustomUser;
 import com.ShoppingWebsiteApplication.model.CustomUserRequest;
-import com.ShoppingWebsiteApplication.model.Order;
 import com.ShoppingWebsiteApplication.model.OrderStatus;
 import com.ShoppingWebsiteApplication.repository.ItemRepository;
 import com.ShoppingWebsiteApplication.repository.OrderItemsRepository;
@@ -26,9 +25,6 @@ public class UserController {
     OrderItemsService orderItemsService;
 
     @Autowired
-    ItemService itemService;
-
-    @Autowired
     OrderService orderService;
 
     @Autowired
@@ -41,11 +37,6 @@ public class UserController {
     ItemRepository itemRepository;
     @Autowired
     OrderItemsRepository orderItemsRepository;
-//    @PostMapping(value = "/create")
-//    @CrossOrigin
-//    public Long createUser(@RequestBody User user) {
-//        return userService.createUser(user);
-//    }
 
 
     @PostMapping("/create")
@@ -77,7 +68,6 @@ public class UserController {
         return userService.getUserId(userName);
     }
 
-//يمكن هاي لازم نمحاها
     @DeleteMapping(value = "/delete/{userId}")
     private void deleteUserById(@PathVariable("userId") Long userId)
     {
@@ -100,19 +90,8 @@ public class UserController {
     if( orderStatus.equals(OrderStatus.CLOSE)) {
         orderItemsService.deleteOrderItemsByUserName(orderId);
 
-//        List<Long> orderItems =orderItemsRepository.getAllOrderItems(orderId);
-//        System.out.println(orderItems);
-//        for (Long orderItemId:orderItems) {
-//            System.out.println(orderItemId);
-//
-//            itemRepository.incItemQuantity(orderItemId);
-//        }
-/////////////ازا من نفس الايتيم في تنين وواحد تيمب وواحد كلوز برجعو عشره وهو لازم تسعه
-//        orderItemsService.deleteOrderItemsByUserName(orderId);
-
     }
     else if (orderStatus.equals(OrderStatus.TEMP)) {
-//        orderItemsService.deleteOrderItemsByUserName(orderId);
         List<Long> orderItems =orderItemsRepository.getAllOrderItems(orderId);
         System.out.println(orderItems);
         for (Long orderItemId:orderItems) {
@@ -120,10 +99,8 @@ public class UserController {
             Long quantity =orderItemsRepository.getOrderItemQuantity(userName,orderItemId);
             System.out.println("quantity"+quantity);
 
-//            itemRepository.incItemQuantity(orderItemId);
             itemRepository.incItemQuantitys(orderItemId,quantity);
         }
-///////////ازا من نفس الايتيم في تنين وواحد تيمب وواحد كلوز برجعو عشره وهو لازم تسعه
         orderItemsService.deleteOrderItemsByUserName(orderId);
 
     }
@@ -139,13 +116,6 @@ public class UserController {
     {
         userService.updateUser(customUser, userName);
     }
-
-//    @CrossOrigin
-//    @PutMapping(value = "/update/{userId}")
-//    private void updateUser(@PathVariable Long userId,@RequestBody CustomUser customUser)
-//    {
-//        userService.updateUser(customUser, userId);
-//    }
 
     @CrossOrigin
     @GetMapping(value = "/getAll")

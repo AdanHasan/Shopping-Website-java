@@ -1,36 +1,3 @@
-//package com.ShoppingWebsiteApplication.model;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//public class OrderItems {
-//
-//    private Order order;
-//    private List<Item> items ;
-//
-//    public OrderItems( Order order, List<Item> items) {
-//        this.order = order;
-//        this.items = items;
-//    }
-//
-//    public Order getOrder() {
-//        return order;
-//    }
-//
-//    public void setOrder(Order order) {
-//        this.order = order;
-//    }
-//
-//    public List<Item> getItems() {
-//        return items;
-//    }
-//
-//    public void setItems(List<Item> items) {
-//        this.items = items;
-//    }
-//
-//
-//}
 
 package com.ShoppingWebsiteApplication.model;
 
@@ -43,59 +10,43 @@ public class OrderItems {
 
     private Long quantity;
 
-    private List<Long> items ;
+    private List<Long> items;
 
     private Long orderItemId;
 
-//    public OrderItems(Long orderId, List<Long> items) {
-//        this.orderId = orderId;
-//        this.items = items;
-//    }
-//    public static Long count(Long[] array) {
-//        Long j = null;
-//        Long countItems = null;
-//        for(int i = 1; i < 5; i++) {
-//            while ( j < 5) {
-//                j++;
-//            }
-//            countItems=j;
-//            System.out.println("i"+i);
-//            System.out.println("j"+j);
-//            System.out.println("countItems"+countItems);
-//        }
-//        return countItems;
-//    }
-
-    public OrderItems(String userName , Long orderId, Long orderItemId) {
-        this.userName=userName;
+    public OrderItems(String userName, Long orderId, Long orderItemId) {
+        this.userName = userName;
         this.orderId = orderId;
 
         this.orderItemId = orderItemId;
     }
+
     public OrderItems(String userName, Long orderId, Long quantity, List<Long> items) {
-        this.userName=userName;
+        this.userName = userName;
         this.orderId = orderId;
         this.quantity = quantity;
         this.items = items;
     }
 
     public OrderItems(String userName, Long orderId) {
-        this.userName=userName;
+        this.userName = userName;
         this.orderId = orderId;
     }
 
     public OrderItems() {
     }
 
-    public OrderItems(String userName,Long orderId, List<Long> itemsList) {
-        this.userName=userName;
+    public OrderItems(String userName, Long orderId, List<Long> itemsList) {
+        this.userName = userName;
         this.orderId = orderId;
         this.items = itemsList;
     }
+
     public OrderItems(Long orderId, List<Long> itemsList) {
         this.orderId = orderId;
         this.items = itemsList;
     }
+
     public Long getQuantity() {
         return quantity;
     }

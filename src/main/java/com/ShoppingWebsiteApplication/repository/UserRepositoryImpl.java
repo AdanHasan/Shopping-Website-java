@@ -1,7 +1,5 @@
 package com.ShoppingWebsiteApplication.repository;
 
-//import com.ShoppingWebsiteApplication.model.Item;
-import com.ShoppingWebsiteApplication.model.Address;
 import com.ShoppingWebsiteApplication.model.CustomUser;
 import com.ShoppingWebsiteApplication.repository.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,36 +16,14 @@ public class UserRepositoryImpl implements UserRepository {
 
     private static final String USER_TABLE_NAME = "user";
 
-    private static final String REGISTERED_TABLE_NAME = "registered";
 
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-
-
-//    @Override
-//    public Long createUser(User user) {
-//        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email, password , phone, address  ) VALUES (?, ? , ? , ? , ? , ?)";
-//        jdbcTemplate.update(sql, user.getFirstName() , user.getLastName() , user.getEmail(), user.getPassword(), user.getPhone(), user.getAddress());
-//        return jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Long.class);
-//    }
-
-//    @Override
-//    public void createUser(CustomUser customUser) {
-//        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, address,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?)";
-//        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(), customUser.getAddress(),0, customUser.getRoles(), customUser.getPermissions());
-//    }
-
-//    @Override
-//    public void createUser(CustomUser customUser) {
-//        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, country,city,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?,?)";
-//        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(),customUser.getAddress().getCountry(), customUser.getAddress().getCity(),0, customUser.getRoles(), customUser.getPermissions());
-//    }
-
     @Override
     public void createUser(CustomUser customUser) {
         String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, country,city,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?,?)";
-        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(),customUser.getAddr()[0], customUser.getAddr()[1],0, customUser.getRoles(), customUser.getPermissions());
+        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail(), customUser.getUsername(), customUser.getPassword(), customUser.getPhone(), customUser.getAddr()[0], customUser.getAddr()[1], 0, customUser.getRoles(), customUser.getPermissions());
     }
 
     @Override
@@ -59,15 +35,17 @@ public class UserRepositoryImpl implements UserRepository {
             return null;
         }
     }
+
     @Override
     public Boolean userStatus(String userName) {
-        String sql = "SELECT active FROM " + USER_TABLE_NAME + " WHERE username="+userName;
-            return jdbcTemplate.queryForObject(sql,Boolean.class);
+        String sql = "SELECT active FROM " + USER_TABLE_NAME + " WHERE username=" + userName;
+        return jdbcTemplate.queryForObject(sql, Boolean.class);
     }
+
     @Override
     public Long getUserId(String userName) {
-        String sql = "SELECT id FROM " + USER_TABLE_NAME + " WHERE username='"+userName+"'";
-        return jdbcTemplate.queryForObject(sql,Long.class);
+        String sql = "SELECT id FROM " + USER_TABLE_NAME + " WHERE username='" + userName + "'";
+        return jdbcTemplate.queryForObject(sql, Long.class);
     }
 
     @Override
@@ -75,7 +53,7 @@ public class UserRepositoryImpl implements UserRepository {
         String sql = "SELECT * FROM " + USER_TABLE_NAME + " WHERE id=?";
         try {
             return jdbcTemplate.queryForObject(sql, new UserMapper(), userId);
-        } catch (EmptyResultDataAccessException error){
+        } catch (EmptyResultDataAccessException error) {
             return null;
         }
     }
@@ -84,20 +62,14 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public void deleteUserById(Long userId) {
         String sql = "DELETE FROM " + USER_TABLE_NAME + " WHERE id=?";
-         jdbcTemplate.update(sql,userId);
+        jdbcTemplate.update(sql, userId);
     }
+
     @Override
     public void deleteUserByName(String userName) {
         String sql = "DELETE FROM " + USER_TABLE_NAME + " WHERE username=?";
-        jdbcTemplate.update(sql,userName);
+        jdbcTemplate.update(sql, userName);
     }
-
-//    @Override
-//    public void updateUser(CustomUser customUser, Long userId) {
-//        String sql = "UPDATE " + USER_TABLE_NAME + " SET first_name=?, last_name=? , email=? , username=? , password=? , phone=?, address=? , active=?" +
-//                " WHERE id=?";
-//        jdbcTemplate.update(sql, customUser.getFirstName() , customUser.getLastName() , customUser.getEmail(), customUser.getUsername(), customUser.getPassword(), customUser.getPhone(), customUser.getAddress(),customUser.getActive(), userId);
-//    }
 
 
     @Override
@@ -108,20 +80,12 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
 
-//    @Override
-//    public void updateUser(CustomUser customUser, Long userId) {
-//        String sql = "UPDATE " + USER_TABLE_NAME + " SET  active=?" +
-//                " WHERE id=?";
-//        jdbcTemplate.update(sql, customUser.getActive(), userId);
-//    }
-
-
     @Override
-    public  List<CustomUser> getAllUsers() {
-        String sql = "SELECT * FROM " + USER_TABLE_NAME ;
+    public List<CustomUser> getAllUsers() {
+        String sql = "SELECT * FROM " + USER_TABLE_NAME;
         try {
             return jdbcTemplate.query(sql, new UserMapper());
-        } catch (EmptyResultDataAccessException error){
+        } catch (EmptyResultDataAccessException error) {
             return null;
         }
     }

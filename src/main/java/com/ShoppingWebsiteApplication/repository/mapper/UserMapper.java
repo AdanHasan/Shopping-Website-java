@@ -1,9 +1,8 @@
 package com.ShoppingWebsiteApplication.repository.mapper;
 
 import com.ShoppingWebsiteApplication.model.CustomUser;
-import com.ShoppingWebsiteApplication.model.OrderStatus;
 import org.springframework.jdbc.core.RowMapper;
-import com.ShoppingWebsiteApplication.model.Address;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -19,8 +18,6 @@ public class UserMapper implements RowMapper<CustomUser> {
                 rs.getString("username"),
                 rs.getString("password"),
                 rs.getString("phone"),
-//                rs.getString("address"),
-//                new Address(rs.getString("country"), rs.getString("city")),
                 new String[]{rs.getString("country"), rs.getString("city")},
                 rs.getBoolean("active"),
                 rs.getString("roles"),

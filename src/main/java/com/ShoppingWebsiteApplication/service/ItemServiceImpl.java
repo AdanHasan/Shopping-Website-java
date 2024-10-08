@@ -7,13 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class ItemServiceImpl implements ItemService {
 
     @Autowired
     ItemRepository itemRepository;
-
 
     @Override
     public Long createItem(Item item) {
@@ -35,11 +33,6 @@ public class ItemServiceImpl implements ItemService {
          itemRepository.deleteItemById(itemId);
     }
 
-//    @Override
-//    public void updateItem(Item[] itemsarr ) {
-//         itemRepository.updateItem(itemsarr );
-//    }
-
     @Override
     public void updateItem(Item item, Long itemId) {itemRepository.updateItem(item , itemId);}
 
@@ -50,7 +43,6 @@ public class ItemServiceImpl implements ItemService {
     public List<Item> getAllItems() {
         return itemRepository.getAllItems();
     }
-
 
         }
 

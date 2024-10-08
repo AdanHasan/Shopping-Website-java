@@ -1,7 +1,5 @@
 package com.ShoppingWebsiteApplication.model;
 
-
-
 public class CustomUser {
 
     private Long id;
@@ -18,53 +16,35 @@ public class CustomUser {
 
     private String phone;
 
-//    private Address address;
     private String country;
     private String city;
-    private String[] addr={country ,city};
+    private String[] addr = {country, city};
 
-//    private  Address address;
 
-//    private int active;
-//private  String address;
     private Boolean active;
 
     private String roles = "";
 
     private String permissions = "";
 
-//    public CustomUser(Long id, String firstName, String lastName, String email, String username, String password , String phone, Address address ,        String[] addr
-//,Boolean active,String roles, String permissions) {
-//        this.id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.username=username;
-//        this.password = password;
-//        this.phone = phone;
-//        this.address = address;
-//        this.addr = addr;
-//        this.active=active;
-//        this.roles = roles;
-//        this.permissions = permissions;
-////        this.active = 1;
-//    }
-public CustomUser(Long id, String firstName, String lastName, String email, String username, String password , String phone, String[] addr
-        ,Boolean active,String roles, String permissions) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.username=username;
-    this.password = password;
-    this.phone = phone;
-    this.addr = addr;
-    this.active=active;
-    this.roles = roles;
-    this.permissions = permissions;
-//        this.active = 1;
-}
-    protected CustomUser(){}
+
+    public CustomUser(Long id, String firstName, String lastName, String email, String username, String password, String phone, String[] addr
+            , Boolean active, String roles, String permissions) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.phone = phone;
+        this.addr = addr;
+        this.active = active;
+        this.roles = roles;
+        this.permissions = permissions;
+    }
+
+    protected CustomUser() {
+    }
 
     public Long getId() {
         return id;
@@ -94,13 +74,6 @@ public CustomUser(Long id, String firstName, String lastName, String email, Stri
         return phone;
     }
 
-//    public Address getAddress() {
-//        return address;
-//    }
-
-//    public int getActive() {
-//        return active;
-//    }
 
     public Boolean getActive() {
         return active;
@@ -143,13 +116,6 @@ public CustomUser(Long id, String firstName, String lastName, String email, Stri
         this.phone = phone;
     }
 
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
-
-//    public void setActive(int active) {
-//        this.active = active;
-//    }
 
     public void setActive(Boolean active) {
         this.active = active;
@@ -172,12 +138,4 @@ public CustomUser(Long id, String firstName, String lastName, String email, Stri
         this.addr = addr;
     }
 
-
-//    public String getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
 }

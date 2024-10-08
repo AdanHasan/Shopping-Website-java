@@ -27,12 +27,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword())
             );
-        } catch (Exception exception){
+        } catch (Exception exception) {
             throw new Exception("Incorrect Username Or Password");
         }
 
         UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        return new AuthenticationResponse( jwtUtil.generateToken(userDetails));
+        return new AuthenticationResponse(jwtUtil.generateToken(userDetails));
     }
 }
 

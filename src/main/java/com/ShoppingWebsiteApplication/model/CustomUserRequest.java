@@ -14,40 +14,24 @@ public class CustomUserRequest {
 
     private String phone;
 
-//    private Address address;
-//
     private String country;
 
     private String city;
-    private String[] addr={ country ,city};
+    private String[] addr = {country, city};
 
-//private  String address;
     private Boolean active;
 
 
-//    public CustomUserRequest(String firstName, String lastName, String email, String username, String password , String phone, Address address , Boolean active ) {
-//
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.username=username;
-//        this.password = password;
-//        this.phone = phone;
-//        this.address = address;
-//        this.active=active;
-//
-//    }
-
-    public CustomUserRequest(String firstName, String lastName, String email, String username, String password , String phone, String[] addr , Boolean active ) {
+    public CustomUserRequest(String firstName, String lastName, String email, String username, String password, String phone, String[] addr, Boolean active) {
 
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.username=username;
+        this.username = username;
         this.password = password;
         this.phone = phone;
         this.addr = addr;
-        this.active=active;
+        this.active = active;
 
     }
 
@@ -74,10 +58,6 @@ public class CustomUserRequest {
     public String getPhone() {
         return phone;
     }
-
-//    public Address getAddress() {
-//        return address;
-//    }
 
     public Boolean getActive() {
         return active;
@@ -107,13 +87,10 @@ public class CustomUserRequest {
         this.phone = phone;
     }
 
-//    public void setAddress(Address address) {
-//        this.address = address;
-//    }
-
     public void setActive(Boolean active) {
         this.active = active;
     }
+
     public String[] getAddr() {
         return addr;
     }
@@ -122,31 +99,22 @@ public class CustomUserRequest {
         this.addr = addr;
     }
 
-//    public String getAddress() {
-//        return address;
-//    }
-//
-//    public void setAddress(String address) {
-//        this.address = address;
-//    }
-
-    public CustomUser toCustomUser(){
-            return new CustomUser(
-                    null,
-                    this.firstName ,
-            this.lastName ,
-            this.email ,
-            this.username,
-            this.password ,
-            this.phone,
-//            this.address,
-                    this.addr,
-            this.active,
-            "",
-                    ""
-            );
-        }
+    public CustomUser toCustomUser() {
+        return new CustomUser(
+                null,
+                this.firstName,
+                this.lastName,
+                this.email,
+                this.username,
+                this.password,
+                this.phone,
+                this.addr,
+                this.active,
+                "",
+                ""
+        );
     }
+}
 
 
 

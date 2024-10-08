@@ -1,6 +1,5 @@
 package com.ShoppingWebsiteApplication.security;
 
-
 import com.ShoppingWebsiteApplication.model.CustomUser;
 import com.ShoppingWebsiteApplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         CustomUser customUser = userService.findUserByUsername(username);
 
-        if(customUser == null){
+        if (customUser == null) {
             throw new UsernameNotFoundException("The provided username can't be found");
         }
         return User.withDefaultPasswordEncoder().username(customUser.getUsername()).password(customUser.getPassword()).roles().build();
