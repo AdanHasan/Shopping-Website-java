@@ -1,11 +1,10 @@
 package  com.ShoppingWebsiteApplication.model;
-
 public class Item {
 
     private Long id;
     private String title;
     private Double price;
-    private Long inStock;
+  private Long inStock;
     private Long quantity;
     private String pictureUrl;
     private Boolean liked ;
@@ -20,6 +19,21 @@ public class Item {
         this.pictureUrl = pictureUrl;
         this.liked=liked;
         this.cart=cart;
+
+    }
+
+    public Item(Long id , String title ,Double price , Long inStock, String pictureUrl , Boolean liked , Boolean cart) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.inStock=inStock;
+        this.pictureUrl = pictureUrl;
+        this.liked=liked;
+        this.cart=cart;
+
+    }
+    public Item() {
+
 
     }
 

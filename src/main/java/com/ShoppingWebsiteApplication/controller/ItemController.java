@@ -31,6 +31,11 @@ public class ItemController {
             return itemService.getItemById(itemId);
         }
 
+    @CrossOrigin
+    @GetMapping(value = "/get/price/{itemId}")
+    public Double getItemPriceById(@PathVariable Long itemId){
+        return itemService.getItemPriceById(itemId);
+    }
 
         @CrossOrigin
         @DeleteMapping(value="/delete/{itemId}")
@@ -48,7 +53,19 @@ public class ItemController {
             itemService.updateItem(item, itemId);
         }
 
+    @CrossOrigin
+    @PutMapping(value = "/update/quantity/{itemId}")
+    private void updateItemQuantity(@PathVariable Long itemId )
+    {
+        itemService.updateItemQuantity( itemId);
+    }
 
+//    @CrossOrigin
+//    @PutMapping(value = "/update/quantity/{itemId}")
+//    private void returnItemQuantity(@PathVariable Long itemId ,@RequestBody Item item)
+//    {
+//        itemService.updateItem(item, itemId);
+//    }
 
 //    @CrossOrigin
 //    @PutMapping(value = "/update")
@@ -64,7 +81,6 @@ public class ItemController {
     public List<Item> getAllItems(){
         return itemService.getAllItems();
     }
-
 
     }
 

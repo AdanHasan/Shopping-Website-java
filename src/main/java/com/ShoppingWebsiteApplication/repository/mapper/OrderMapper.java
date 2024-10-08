@@ -18,12 +18,13 @@ public class OrderMapper implements RowMapper<Order> {
     public Order mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new Order(
                 rs.getLong("id"),
-                rs.getLong("user_id"),
+//                rs.getLong("user_id"),
+                rs.getString("user_name"),
                 rs.getDate("order_date").toLocalDate(),
                 rs.getString("shipping_address"),
                 rs.getDouble("total_price"),
-                OrderStatus.valueOf(rs.getString("status")),
-                new Long[]{rs.getLong("items_id")}
+                OrderStatus.valueOf(rs.getString("status"))
+//                new Long[]{rs.getLong("items_id")}
 
                //getItemIds(rs.getArray("items"))
 //                (Item[]) rs.getArray("items").getArray()

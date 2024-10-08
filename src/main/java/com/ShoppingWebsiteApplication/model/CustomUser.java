@@ -18,33 +18,52 @@ public class CustomUser {
 
     private String phone;
 
-    private String address;
+//    private Address address;
+    private String country;
+    private String city;
+    private String[] addr={country ,city};
+
+//    private  Address address;
 
 //    private int active;
-
+//private  String address;
     private Boolean active;
 
     private String roles = "";
 
     private String permissions = "";
 
-    public CustomUser(Long id, String firstName, String lastName, String email, String username, String password , String phone, String address ,Boolean active,String roles, String permissions) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.username=username;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.active=active;
-        this.roles = roles;
-        this.permissions = permissions;
+//    public CustomUser(Long id, String firstName, String lastName, String email, String username, String password , String phone, Address address ,        String[] addr
+//,Boolean active,String roles, String permissions) {
+//        this.id = id;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.username=username;
+//        this.password = password;
+//        this.phone = phone;
+//        this.address = address;
+//        this.addr = addr;
+//        this.active=active;
+//        this.roles = roles;
+//        this.permissions = permissions;
+////        this.active = 1;
+//    }
+public CustomUser(Long id, String firstName, String lastName, String email, String username, String password , String phone, String[] addr
+        ,Boolean active,String roles, String permissions) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.username=username;
+    this.password = password;
+    this.phone = phone;
+    this.addr = addr;
+    this.active=active;
+    this.roles = roles;
+    this.permissions = permissions;
 //        this.active = 1;
-
-
-    }
-
+}
     protected CustomUser(){}
 
     public Long getId() {
@@ -75,9 +94,9 @@ public class CustomUser {
         return phone;
     }
 
-    public String getAddress() {
-        return address;
-    }
+//    public Address getAddress() {
+//        return address;
+//    }
 
 //    public int getActive() {
 //        return active;
@@ -124,9 +143,9 @@ public class CustomUser {
         this.phone = phone;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//    public void setAddress(Address address) {
+//        this.address = address;
+//    }
 
 //    public void setActive(int active) {
 //        this.active = active;
@@ -144,4 +163,21 @@ public class CustomUser {
     public void setPermissions(String permissions) {
         this.permissions = permissions;
     }
+
+    public String[] getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String[] addr) {
+        this.addr = addr;
+    }
+
+
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
 }

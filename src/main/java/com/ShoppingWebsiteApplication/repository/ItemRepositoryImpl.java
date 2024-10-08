@@ -23,8 +23,8 @@ public  class ItemRepositoryImpl implements ItemRepository {
 
     @Override
     public Long createItem(Item item) {
-        String sql = "INSERT INTO " + ITEM_TABLE_NAME + " (title, price,in_stock,quantity , picture_url , liked , cart) VALUES ( ?,? ,?, ?,? , ? , ?)";
-        jdbcTemplate.update(sql, item.getTitle() , item.getPrice(), item.getInStock(), item.getQuantity(),item.getPictureUrl(), item.getLiked() , item.getCart());
+        String sql = "INSERT INTO " + ITEM_TABLE_NAME + " (title, price,in_stock, picture_url , liked , cart) VALUES ( ?,? ,?, ?,? , ? , ?)";
+        jdbcTemplate.update(sql, item.getTitle() , item.getPrice(), item.getInStock(),item.getPictureUrl(), item.getLiked() , item.getCart());
         return jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Long.class);
     }
 
@@ -34,6 +34,26 @@ public  class ItemRepositoryImpl implements ItemRepository {
         String sql = "SELECT * FROM " + ITEM_TABLE_NAME + " WHERE id=?";
         try {
             return jdbcTemplate.queryForObject(sql, new ItemMapper(), itemId);
+        } catch (EmptyResultDataAccessException error){
+            return null;
+        }
+    }
+
+    @Override
+    public Double getItemPriceById(Long itemId) {
+        String sql = "SELECT price FROM " + ITEM_TABLE_NAME + " WHERE id=?";
+        try {
+            return jdbcTemplate.queryForObject(sql, Double.class,itemId);
+        } catch (EmptyResultDataAccessException error){
+            return null;
+        }
+    }
+
+    @Override
+    public Long getItemQuantityById(Long itemId) {
+        String sql = "SELECT in_stock FROM " + ITEM_TABLE_NAME + " WHERE id=?";
+        try {
+            return jdbcTemplate.queryForObject(sql, Long.class,itemId);
         } catch (EmptyResultDataAccessException error){
             return null;
         }
@@ -59,12 +79,37 @@ public  class ItemRepositoryImpl implements ItemRepository {
 
     @Override
     public void updateItem(Item item, Long itemId) {
-           String sql = "UPDATE " + ITEM_TABLE_NAME + " SET title=?, price=? , in_stock=? , quantity=? ,   picture_url=? , liked=? , cart=? " +
+           String sql = "UPDATE " + ITEM_TABLE_NAME + " SET title=?, price=? , in_stock=?  ,   picture_url=? , liked=? , cart=? " +
                 " WHERE id=?";
-        jdbcTemplate.update(sql,item.getTitle() ,  item.getPrice(), item.getInStock(), item.getQuantity(), item.getPictureUrl(), item.getLiked(), item.getCart(), item.getId());
+        jdbcTemplate.update(sql,item.getTitle() ,  item.getPrice(), item.getInStock(), item.getPictureUrl(), item.getLiked(), item.getCart(), item.getId());
+    }
+    @Override
+    public void updateItemQuantity( Long itemId) {
+        String sql = "UPDATE " + ITEM_TABLE_NAME + " SET  in_stock=(in_stock-1) " +
+                " WHERE id=?";
+        jdbcTemplate.update(sql, itemId);
     }
 
+    @Override
+    public void incItemQuantitys( Long itemId,Long quantity) {
+        String sql = "UPDATE " + ITEM_TABLE_NAME + " SET  in_stock=(in_stock+"+quantity+") " +
+                " WHERE id=?";
+        jdbcTemplate.update(sql, itemId);
+    }
 
+    @Override
+    public void decItemQuantity(Long itemId) {
+        String sql = "UPDATE " + ITEM_TABLE_NAME + " SET  in_stock=(in_stock-1) " +
+                " WHERE id=?";
+        jdbcTemplate.update(sql, itemId);
+    }
+
+    @Override
+    public void incItemQuantity(Long itemId) {
+        String sql = "UPDATE " + ITEM_TABLE_NAME + " SET  in_stock=(in_stock+1) " +
+                " WHERE id=?";
+        jdbcTemplate.update(sql, itemId);
+    }
 
 
 

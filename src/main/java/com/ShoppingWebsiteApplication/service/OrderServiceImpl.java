@@ -18,6 +18,7 @@ public class OrderServiceImpl implements OrderService {
     OrderItemsRepository orderItemsRepository;
 
 
+
 //    @Override
 //    public UserOrderResponse createOrder(UserOrderRequest userOrderRequest) throws Exception {
 //        User selectedUser = userOrderRequest.getUser();
@@ -39,39 +40,58 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Long createOrder(Order order  ) {
-        return orderRepository.createOrder(order);
+    public Long createOrder(Order order ) {
+        String newUserName = "'"+ order.getUserName()+"'";
+
+        List<Long> arrOfTempOrders= orderRepository.getAllTempOrdersByUserName(newUserName);
+        if(arrOfTempOrders.size()==0) {
+              return orderRepository.createOrder(order);
+        }
+        return null;
     }
 
     @Override
     public Order getOrderById(Long orderId) {return orderRepository.getOrderById(orderId);
     }
-    @Override
-    public Order getOrderBy(Long orderId) {
-        return orderRepository.getOrderBy(orderId);
-    }
-
-    @Override
-    public String getOrder(Long orderId) {
-        return "Haaa";
-    }
+//    @Override
+//    public Order getOrderBy(Long orderId) {
+//        return orderRepository.getOrderBy(orderId);
+//    }
+//
+//    @Override
+//    public String getOrder(Long orderId) {
+//        return "Haaa";
+//    }
 
     @Override
     public void deleteOrderById(Long orderId) {
          orderRepository.deleteOrderById(orderId);
     }
-
-    @Override
-    public void updateOrder( Long orderId , Order order) {orderRepository.updateOrder( orderId , order);
+    public void deleteOrderByUserName(String userName) {
+        orderRepository.deleteOrderByUserName(userName);
     }
 
+    @Override
+    public void updateOrderShippingAddress( Long orderId , Order order) {
+        orderRepository.updateOrderShippingAddress( orderId , order);
+    }
+    @Override
+    public void updateOrderStatus( Long orderId ) {orderRepository.updateOrderStatus( orderId);
+    }
     @Override
     public List<Order> getAllOrders() {
         return orderRepository.getAllOrders();
     }
+
     @Override
-    public OrderItems getOrderItems(Order order) {
-        return new OrderItems(order, orderItemsRepository.getAllOrderItems(order.getId()));
+    public List<Long> getAllOrdersByUserName(String userName) {
+        return orderRepository.getAllOrdersByUserName(userName);
     }
+
+
+//    @Override
+//    public OrderItems getOrderItems(Order order) {
+//        return new OrderItems(order, orderItemsRepository.getAllOrderItems(order.getId()));
+//    }
 
 }

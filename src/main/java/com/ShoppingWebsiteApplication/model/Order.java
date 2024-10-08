@@ -1,5 +1,7 @@
 package com.ShoppingWebsiteApplication.model;
 
+import feign.Retryer;
+
 import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +17,9 @@ public class Order {
 
     private Long id;
 
-    private Long userId;
+//    private Long userId;
+
+    private String userName;
 
     private LocalDate orderDate;
 
@@ -24,11 +28,13 @@ public class Order {
     private Double totalPrice;
 
     private OrderStatus status;
+    //Lelian
+//    private Long NumberOfItems;
 
 //    private Array itemId ;
 
-    private Long[] itemsId;
-    private String itemsIdAsString;
+//    private Long[] itemsId;
+//    private String itemsIdAsString;
 
     /*
      * itemsId_java = [123681236,9754983709234,8748593023]
@@ -37,38 +43,56 @@ public class Order {
      *
      * */
 
-    public Long[] getItemsId() {
-        return itemsId;
+//    public Long[] getItemsId() {
+//        return itemsId;
+//    }
+//
+//    public void setItemsId(Long[] itemsId) {
+//        this.itemsId = itemsId;
+//    }
+
+
+    public Order() {
     }
 
-    public void setItemsId(Long[] itemsId) {
-        this.itemsId = itemsId;
-    }
-
-    public Order(Long id, Long userId, LocalDate orderDate, String shippingAddress, Double totalPrice, OrderStatus status, Long[] itemsId) {
+    public Order(Long id, String userName, LocalDate orderDate, String shippingAddress, Double totalPrice, OrderStatus status) {
         this.id = id;
-        this.userId = userId;
+//        this.userId = userId;
+        this.userName=userName;
         this.orderDate = orderDate;
         this.shippingAddress = shippingAddress;
         this.totalPrice = totalPrice;
         this.status = status;
-        this.itemsId = itemsId;
-        itemsIdAsString = arrayToString(itemsId);
+//        this.itemsId = itemsId;
+//        itemsIdAsString = arrayToString(itemsId);
+    }
+    public Order(  String userName, LocalDate orderDate) {
+//        this.userId = userId;
+        this.userName=userName;
+        this.orderDate = orderDate;
+
+//        this.itemsId = itemsId;
+//        itemsIdAsString = arrayToString(itemsId);
     }
 
-
-    public String getItemsIdAsString(){
-        return itemsIdAsString;
-    }
+//    public String getItemsIdAsString(){
+//        return itemsIdAsString;
+//    }
     public Long getId() {
         return id;
     }
 
-    public Long getUserId() {
-        return userId;
+//    public Long getUserId() {
+//        return userId;
+//    }
+
+
+    public String getUserName() {
+        return userName;
     }
 
     public LocalDate getOrderDate() {
+        orderDate=LocalDate.now();
         return orderDate;
     }
 
@@ -77,8 +101,9 @@ public class Order {
     }
 
     public Double getTotalPrice() {
-        return totalPrice;
+      return totalPrice;
     }
+
 
 
     public OrderStatus getStatus() {
@@ -98,8 +123,13 @@ public class Order {
         this.id = id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
+
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public void setOrderDate(LocalDate orderDate) {
@@ -134,10 +164,10 @@ public class Order {
 //        );
 //    }
 
-    public static String arrayToString(Long[] array) {
-        return Arrays.stream(array)
-                .map(String::valueOf)
-                .collect(Collectors.joining(","));
-    }
+//    public static String arrayToString(Long[] array) {
+//        return Arrays.stream(array)
+//                .map(String::valueOf)
+//                .collect(Collectors.joining(","));
+//    }
 
 }

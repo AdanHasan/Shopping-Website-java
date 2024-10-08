@@ -1,9 +1,8 @@
 package com.ShoppingWebsiteApplication.repository;
 
 //import com.ShoppingWebsiteApplication.model.Item;
+import com.ShoppingWebsiteApplication.model.Address;
 import com.ShoppingWebsiteApplication.model.CustomUser;
-import com.ShoppingWebsiteApplication.model.Order;
-import com.ShoppingWebsiteApplication.repository.mapper.OrderMapper;
 import com.ShoppingWebsiteApplication.repository.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -33,10 +32,22 @@ public class UserRepositoryImpl implements UserRepository {
 //        return jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Long.class);
 //    }
 
+//    @Override
+//    public void createUser(CustomUser customUser) {
+//        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, address,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?)";
+//        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(), customUser.getAddress(),0, customUser.getRoles(), customUser.getPermissions());
+//    }
+
+//    @Override
+//    public void createUser(CustomUser customUser) {
+//        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, country,city,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?,?)";
+//        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(),customUser.getAddress().getCountry(), customUser.getAddress().getCity(),0, customUser.getRoles(), customUser.getPermissions());
+//    }
+
     @Override
     public void createUser(CustomUser customUser) {
-        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, address,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?)";
-        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(), customUser.getAddress(),0, customUser.getRoles(), customUser.getPermissions());
+        String sql = "INSERT INTO " + USER_TABLE_NAME + " (first_name,  last_name, email,username, password,  phone, country,city,active ,roles, permissions) VALUES (?, ?, ?, ?,?, ?, ?,?, ? ,?,?)";
+        jdbcTemplate.update(sql, customUser.getFirstName(), customUser.getLastName(), customUser.getEmail() , customUser.getUsername(), customUser.getPassword(), customUser.getPhone(),customUser.getAddr()[0], customUser.getAddr()[1],0, customUser.getRoles(), customUser.getPermissions());
     }
 
     @Override
@@ -48,7 +59,16 @@ public class UserRepositoryImpl implements UserRepository {
             return null;
         }
     }
-
+    @Override
+    public Boolean userStatus(String userName) {
+        String sql = "SELECT active FROM " + USER_TABLE_NAME + " WHERE username="+userName;
+            return jdbcTemplate.queryForObject(sql,Boolean.class);
+    }
+    @Override
+    public Long getUserId(String userName) {
+        String sql = "SELECT id FROM " + USER_TABLE_NAME + " WHERE username='"+userName+"'";
+        return jdbcTemplate.queryForObject(sql,Long.class);
+    }
 
     @Override
     public CustomUser getUserById(Long userId) {
@@ -65,6 +85,11 @@ public class UserRepositoryImpl implements UserRepository {
     public void deleteUserById(Long userId) {
         String sql = "DELETE FROM " + USER_TABLE_NAME + " WHERE id=?";
          jdbcTemplate.update(sql,userId);
+    }
+    @Override
+    public void deleteUserByName(String userName) {
+        String sql = "DELETE FROM " + USER_TABLE_NAME + " WHERE username=?";
+        jdbcTemplate.update(sql,userName);
     }
 
 //    @Override
@@ -85,9 +110,9 @@ public class UserRepositoryImpl implements UserRepository {
 
 //    @Override
 //    public void updateUser(CustomUser customUser, Long userId) {
-//        String sql = "UPDATE " + REGISTERED_TABLE_NAME + " SET username=?, password=? , active=?" +
+//        String sql = "UPDATE " + USER_TABLE_NAME + " SET  active=?" +
 //                " WHERE id=?";
-//        jdbcTemplate.update(sql, customUser.getUsername(), customUser.getPassword(), customUser.getActive(), userId);
+//        jdbcTemplate.update(sql, customUser.getActive(), userId);
 //    }
 
 

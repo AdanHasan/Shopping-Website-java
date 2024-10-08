@@ -16,17 +16,19 @@ public interface OrderService {
 
     Order getOrderById( Long orderId);
 
-    Order getOrderBy(Long orderId);
-    String getOrder(Long orderId);
+//    Order getOrderBy(Long orderId);
+//    String getOrder(Long orderId);
 
 
     void deleteOrderById( Long orderId);
+    void deleteOrderByUserName(String userName);
 
-    void updateOrder(Long orderId ,  Order order);
-
+    void updateOrderShippingAddress(Long orderId ,  Order order);
+    void updateOrderStatus( Long orderId);
     List<Order> getAllOrders();
-    OrderItems getOrderItems(Order order);
+//    OrderItems getOrderItems(Order order);
 
+     List<Long> getAllOrdersByUserName(String userName);
 
 
 }
