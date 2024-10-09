@@ -129,7 +129,7 @@ We wrote the code in many files to save the data in H2-database and display it a
 My Name : Adan Hasan <br>
 My Email : adan2004hasan@gmail.com
 
-Project Link: [https://github.com/AdanHasan/Shopping-Website-java](https://github.com/AdanHasan/Shopping-Website-java)
+Project Link: [https://github.com/AdanHasan/Shopping-Website-java.git](https://github.com/AdanHasan/Shopping-Website-java.git)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
